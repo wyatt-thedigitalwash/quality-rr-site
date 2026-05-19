@@ -1,32 +1,80 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-export default function Error({
+export default function RootError({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
-      <h1 className="text-4xl font-bold mb-4">Something went wrong</h1>
-      <p className="text-lg text-gray-600 mb-8">
-        An unexpected error occurred. Please try again.
-      </p>
-      <div className="flex gap-4">
-        <button
-          onClick={reset}
-          className="inline-block rounded bg-black px-6 py-3 text-white hover:opacity-80 transition-opacity"
-        >
-          Try Again
-        </button>
+    <main className="bg-white min-h-screen flex flex-col">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-6 w-full">
         <Link
           href="/"
-          className="inline-block rounded border border-black px-6 py-3 hover:bg-gray-100 transition-colors"
+          className="font-sans font-bold text-sm tracking-[0.1em] uppercase text-navy"
         >
-          Go Home
+          Quality Restoration
+          <br />
+          &amp; Renovations
         </Link>
+      </div>
+
+      <div className="flex-1 flex items-center">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full pb-24">
+          <div className="max-w-2xl">
+            <p className="font-sans font-medium text-xs tracking-[0.15em] uppercase text-taupe mb-6">
+              Something Went Wrong
+            </p>
+            <h1 className="font-sans font-extrabold text-5xl md:text-7xl leading-[0.95] tracking-[-0.035em] text-navy mb-8">
+              An error occurred.
+            </h1>
+            <p className="font-sans text-lg text-ink leading-relaxed mb-10 max-w-xl">
+              The page failed to load. You can try again, or reach the team
+              directly by phone or email if the problem continues.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={reset}
+                className="font-sans font-medium uppercase text-xs tracking-[0.15em] bg-navy text-white px-7 py-4 rounded-[2px] hover:bg-taupe-dark transition-colors"
+              >
+                Try Again
+              </button>
+              <Link
+                href="/contact"
+                className="font-sans font-medium uppercase text-xs tracking-[0.15em] border border-taupe text-taupe px-7 py-4 rounded-[2px] hover:border-taupe-dark hover:text-taupe-dark transition-colors"
+              >
+                Contact the Team
+              </Link>
+            </div>
+
+            <p className="mt-8 font-sans text-sm text-taupe">
+              Call{" "}
+              <a
+                href="tel:+18135171555"
+                className="text-taupe hover:text-navy transition-colors underline underline-offset-2"
+              >
+                (813) 517-1555
+              </a>{" "}
+              or email{" "}
+              <a
+                href="mailto:contact@quality-rr.com"
+                className="text-taupe hover:text-navy transition-colors underline underline-offset-2"
+              >
+                contact@quality-rr.com
+              </a>
+            </p>
+          </div>
+
+          {process.env.NODE_ENV !== "production" && error?.message && (
+            <pre className="mt-12 p-4 bg-bone text-xs text-ink font-mono overflow-x-auto max-w-2xl">
+              {error.message}
+            </pre>
+          )}
+        </div>
       </div>
     </main>
   );
