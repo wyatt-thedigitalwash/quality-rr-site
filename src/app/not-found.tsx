@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -12,13 +13,14 @@ export default function RootNotFound() {
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 py-6">
-        <Link
-          href="/"
-          className="font-sans font-bold text-sm tracking-[0.1em] uppercase text-navy"
-        >
-          Quality Restoration
-          <br />
-          &amp; Renovations
+        <Link href="/">
+          <Image
+            src="/branding/quality-restoration-renovations-site-logo.png"
+            alt="Quality Restoration and Renovations"
+            width={140}
+            height={70}
+            className="h-9 md:h-11 w-auto"
+          />
         </Link>
       </div>
       <div className="flex-1 flex items-center">
